@@ -70,6 +70,10 @@ function SideBar({ edges, nodes, onNodeAdd }: SideBarProps): ReactElement {
       } else if (type === 'subWorkflow') {
         width = 200;
         height = 50;
+      } else if (type === 'exclusiveGateway') {
+        data = {
+          condition: prompt('Condition') || 'true',
+        };
       } else {
         data = { label };
       }

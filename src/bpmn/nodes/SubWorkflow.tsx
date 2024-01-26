@@ -15,7 +15,7 @@ function SubWorkflow({
       handles={{ left: { type: 'target' }, right: { type: 'source' } }}
       className="sub-workflow"
     >
-      <h5>{label}</h5>
+      <h5 style={{ position: 'relative', top: -32 }}>{label}</h5>
     </CustomNodeBase>
   );
 }

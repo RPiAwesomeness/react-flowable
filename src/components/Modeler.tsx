@@ -20,7 +20,7 @@ import SideBar, { SideBarProps } from './SideBar';
 import Toolbar from 'bpmn/nodes/Toolbar';
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
-  zIndex: 500,
+  zIndex: 10000,
   type: ConnectionLineType.SmoothStep,
   style: { strokeWidth: 2, stroke: 'black' },
   markerEnd: {
