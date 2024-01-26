@@ -33,10 +33,7 @@ function SideBar({ edges, nodes, onNodeAdd }: SideBarProps): ReactElement {
   const addNode = useCallback(
     (type: BPMNNodeTypes) => {
       console.log('Adding', type);
-      const label = prompt('Label');
-
-      // Abort early
-      if (label === null) return;
+      const label = 'test-node';
 
       let width = 32;
       let height = 32;
@@ -45,7 +42,7 @@ function SideBar({ edges, nodes, onNodeAdd }: SideBarProps): ReactElement {
         width = 200;
         height = 60;
         data = {
-          name: prompt('Name') || 'Unknown Task',
+          name: 'Unknown Task',
           documentation: prompt('Documentation (optional)') || '',
         };
       } else if (type === 'subWorkflow') {

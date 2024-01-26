@@ -9,11 +9,14 @@ interface UserTaskData {
 }
 
 function UserTask({
-  id,
   data: { name = 'Unknown Task', documentation = '', fields },
 }: NodeProps<UserTaskData>): ReactElement {
   return (
-    <CustomNodeBase nodeId={id} handles={{ left: 'target', right: 'source' }} className="user-task">
+    <CustomNodeBase
+      resizable
+      handles={{ left: 'target', right: 'source' }}
+      className="user-task"
+    >
       <h5>{name}</h5>
       {documentation ? <h6 className="subtitle">{documentation}</h6> : null}
       {fields ? (

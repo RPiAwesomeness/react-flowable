@@ -25,7 +25,6 @@ function Toolbar(): ReactElement | null {
         return;
       }
 
-      // Retrieve position of selected node and get absolute position (position member is relative to parent for nested nodes)
       const firstNode = nodes.at(0)!;
       const {
         id,

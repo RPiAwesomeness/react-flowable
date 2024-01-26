@@ -6,6 +6,8 @@ h5, h6 {
 .basic-node {
   min-height: 32px;
   min-width: 32px;
+  width: 100%;
+  height: 100%;
   border: 3px solid #eee;
   border-radius: 3px;
   background: white;
@@ -28,16 +30,6 @@ h5, h6 {
   border-radius: 100%;
 }
 
-.end-event {
-  margin-left: 0;
-}
-
-.user-task {
-  width: 200px;
-  margin-left: 0px;
-  margin-right: 0px;
-}
-
 .user-task .task-fields {
   display: flex;
   flex-direction: column;
@@ -49,13 +41,6 @@ h5, h6 {
 
 .sub-workflow {
   display: flex;
-  justify-content: center;
-  border: 1px solid black;
+  border: 2px solid #555;
   border-radius: 5px;
-  width: 100%;
-  height: 100%;
-}
-
-.sub-workflow h5 {
-  transform: translate(0, -24px);
 }

@@ -1,35 +1,55 @@
-import { PropsWithChildren, ReactElement, useId, useMemo } from 'react';
-import { Handle, HandleType, Position, useReactFlow } from 'reactflow';
+import {
+  HTMLAttributes,
+  PropsWithChildren,
+  ReactElement,
+  useId,
+  useState,
+} from 'react';
+import {
+  Handle,
+  HandleType,
+  NodeResizer,
+  Position,
+  useNodeId,
+  useOnSelectionChange,
+} from 'reactflow';
 
 interface CustomNodeBaseProps extends PropsWithChildren {
-  nodeId: string;
   handles?: { [P in Position]?: HandleType };
   className?: string;
+  resizable?: boolean;
+  rootProps?: HTMLAttributes<HTMLDivElement>;
 }
 
 function CustomNodeBase({
-  nodeId,
   children,
+  resizable = false,
   handles = {},
   className = '',
+  rootProps = {},
 }: CustomNodeBaseProps): ReactElement {
   const id = useId();
 
-  const { getNode } = useReactFlow();
-  const node = useMemo(() => getNode(nodeId), [nodeId]);
-  const [width, height] = useMemo(
-    () => [node?.width ?? 32, node?.height ?? 32],
-    [node?.width, node?.height],
-  );
+  // We are inside a node - there will always be an ID
+  const nodeId = useNodeId()!;
+
+  const [selected, setSelected] = useState(false);
+  useOnSelectionChange({
+    onChange: ({ nodes }) => {
+      const firstNode = nodes.at(0);
+      setSelected(firstNode?.id === nodeId);
+    },
+  });
 
   return (
     <div
       style={{
         flexDirection: 'column',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
-        width,
-        height,
+        width: '100%',
+        height: '100%',
+        ...rootProps,
       }}
     >
       <div id={`${nodeId}-toolbar-portal`} />
@@ -40,7 +60,13 @@ function CustomNodeBase({
           type={type}
         />
       ))}
-      <div className={['basic-node', className].join(' ')}>{children}</div>
+      <NodeResizer
+        nodeId={nodeId}
+        isVisible={resizable && selected}
+        minWidth={32}
+        minHeight={32}
+      />
+      <div className={['basic-node', className].join(' ')} style={{  }}>{children}</div>
     </div>
   );
 }

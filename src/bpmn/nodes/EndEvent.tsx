@@ -6,13 +6,9 @@ interface EndEventData {
   label: string;
 }
 
-function EndEvent({ id, data }: NodeProps<EndEventData>): ReactElement {
+function EndEvent({ data }: NodeProps<EndEventData>): ReactElement {
   return (
-    <CustomNodeBase
-      nodeId={id}
-      handles={{ left: 'target' }}
-      className="end-event"
-    >
+    <CustomNodeBase handles={{ left: 'target' }} className="end-event">
       {data.label ? <p>{data.label}</p> : null}
     </CustomNodeBase>
   );

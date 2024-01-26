@@ -33,7 +33,7 @@ const connectionLineStyle = {
 };
 
 function Modeler(): ReactElement {
-  const { screenToFlowPosition, addNodes } = useReactFlow();
+  const { addNodes } = useReactFlow();
 
   const [nodeId, setNodeId] = useState(initialNodes.length);
   const [nodes] = useNodesState(initialNodes);
@@ -43,9 +43,10 @@ function Modeler(): ReactElement {
     (type, label, data, width, height) => {
       const newNode: Node = {
         type,
+        width,
+        height,
         id: `node-${nodeId}`,
-        position: screenToFlowPosition({ x: 32, y: 32 }),
-        style: { width, height },
+        position: { x: 32, y: 32 },
         data: { ...data, label },
       };
 
