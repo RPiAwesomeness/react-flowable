@@ -43,6 +43,7 @@ function SideBar({ edges, nodes, onNodeAdd }: SideBarProps): ReactElement {
       let data = {};
       if (type === 'userTask') {
         width = 200;
+        height = 60;
         data = {
           name: prompt('Name') || 'Unknown Task',
           documentation: prompt('Documentation (optional)') || '',
@@ -62,7 +63,6 @@ function SideBar({ edges, nodes, onNodeAdd }: SideBarProps): ReactElement {
   return (
     <div
       style={{
-        display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -72,7 +72,6 @@ function SideBar({ edges, nodes, onNodeAdd }: SideBarProps): ReactElement {
     >
       <div
         style={{
-          display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
           alignItems: 'center',

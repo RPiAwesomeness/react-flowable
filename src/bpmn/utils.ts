@@ -5,9 +5,7 @@ const BPMN_NS = 'http://www.omg.org/spec/BPMN/20100524/MODEL';
 const FLOWABLE_NS = 'http://flowable.org/bpmn';
 const FLOWABLE_TEMPLATE = `<definitions xmlns="${BPMN_NS}" xmlns:flowable="${FLOWABLE_NS}" targetNamespace="Examples" />`;
 
-const nodeConverters: Record<BPMNNodeTypes, ((node: Node, elem: Element) => void) | undefined> = {
-  startEvent: () => undefined,
-  endEvent: () => undefined,
+const nodeConverters: { [T in BPMNNodeTypes]?: ((node: Node, elem: Element) => void) } = {
   userTask: ({ data }, elem) => {
     elem.setAttribute('name', data.name ?? 'Unnamed Task');
   },

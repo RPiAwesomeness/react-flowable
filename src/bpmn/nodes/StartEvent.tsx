@@ -1,18 +1,16 @@
 import { ReactElement } from 'react';
-import { Handle, NodeProps, Position } from 'reactflow';
+import { NodeProps } from 'reactflow';
+import CustomNodeBase from './CustomNodeBase';
 
 interface StartEventData {
   label: string;
 }
 
-function StartEvent({ data }: NodeProps<StartEventData>): ReactElement {
+function StartEvent({ id, data }: NodeProps<StartEventData>): ReactElement {
   return (
-    <>
-      <div className="basic-node start-event">
-        {data.label ? <p>{data.label}</p> : null}
-      </div>
-      <Handle type="source" position={Position.Right} />
-    </>
+    <CustomNodeBase nodeId={id} handles={{ right: 'source' }} className="start-event">
+      {data.label ? <p>{data.label}</p> : null}
+    </CustomNodeBase>
   );
 }
 

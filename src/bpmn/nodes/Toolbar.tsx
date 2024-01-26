@@ -1,23 +1,21 @@
-import { ReactElement, useCallback, useState } from 'react';
+import { ReactElement, useCallback, useMemo, useState } from 'react';
 
-import {
-  XYPosition,
-  getNodePositionWithOrigin,
-  useOnSelectionChange,
-  useReactFlow,
-} from 'reactflow';
+import { useOnSelectionChange, useReactFlow } from 'reactflow';
 import { MdDeleteOutline, MdEdit } from 'react-icons/md';
 import IconButton from 'components/IconButton';
-
-const DEFAULT_POS: XYPosition = { x: 0, y: 0 };
+import { createPortal } from 'react-dom';
 
 function Toolbar(): ReactElement | null {
-  const { deleteElements, getEdges, flowToScreenPosition } = useReactFlow();
+  const { deleteElements, getEdges } = useReactFlow();
 
   const [nodeId, setNodeId] = useState<string>();
   const [label, setLabel] = useState('');
   const [visible, setVisible] = useState(false);
-  const [position, setPosition] = useState<XYPosition>(DEFAULT_POS);
+
+  const target = useMemo(
+    () => document.getElementById(`${nodeId}-toolbar-portal`),
+    [nodeId],
+  );
 
   useOnSelectionChange({
     onChange: ({ nodes }) => {
@@ -29,12 +27,12 @@ function Toolbar(): ReactElement | null {
 
       // Retrieve position of selected node and get absolute position (position member is relative to parent for nested nodes)
       const firstNode = nodes.at(0)!;
-      const { id, data, width = 0, height = 0 } = firstNode;
-      const { positionAbsolute } = getNodePositionWithOrigin(firstNode);
-      console.log(positionAbsolute.x, width, positionAbsolute.y, height);
+      const {
+        id,
+        data: { label = 'Unknown Node' },
+      } = firstNode;
       setNodeId(id);
-      setPosition(flowToScreenPosition(positionAbsolute));
-      setLabel(data?.label || 'Unknown Node');
+      setLabel(label);
       setVisible(true);
     },
   });
@@ -56,37 +54,36 @@ function Toolbar(): ReactElement | null {
     });
   }, [nodeId]);
 
-  return !visible ? null : (
-    <div
-      style={{
-        position: 'absolute',
-        zIndex: 1000,
-        left: position.x - 64,
-        top: position.y - 56,
-        alignContent: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <div
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: 56,
-        }}
-      >
-        <IconButton
-          title={`Delete ${label}`}
-          onClick={handleDelete}
-          icon={<MdDeleteOutline />}
-        />
-        <IconButton
-          title={`Edit ${label}`}
-          onClick={handleEdit}
-          icon={<MdEdit />}
-        />
-      </div>
-    </div>
-  );
+  return visible && !!target
+    ? createPortal(
+        <div
+          style={{
+            position: 'absolute',
+            left: -16,
+            bottom: 32,
+            marginBottom: 4,
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 88,
+            border: '2px solid #eee',
+            borderRadius: 32,
+            zIndex: 1000,
+          }}
+        >
+          <IconButton
+            title={`Delete ${label}`}
+            onClick={handleDelete}
+            icon={<MdDeleteOutline />}
+          />
+          <IconButton
+            title={`Edit ${label}`}
+            onClick={handleEdit}
+            icon={<MdEdit />}
+          />
+        </div>,
+        target,
+      )
+    : null;
 }
 
 export default Toolbar;

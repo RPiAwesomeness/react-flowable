@@ -6,8 +6,6 @@ import ReactFlow, {
   DefaultEdgeOptions,
   MarkerType,
   MiniMap,
-  ReactFlowProps,
-  addEdge,
   useEdgesState,
   useNodesState,
   useReactFlow,
@@ -35,11 +33,11 @@ const connectionLineStyle = {
 };
 
 function Modeler(): ReactElement {
-  const { screenToFlowPosition } = useReactFlow();
+  const { screenToFlowPosition, addNodes } = useReactFlow();
 
   const [nodeId, setNodeId] = useState(initialNodes.length);
-  const [nodes, setNodes, handleNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, handleEdgesChange] = useEdgesState(initialEdges);
+  const [nodes] = useNodesState(initialNodes);
+  const [edges] = useEdgesState(initialEdges);
 
   const handleNodeAdd = useCallback<SideBarProps['onNodeAdd']>(
     (type, label, data, width, height) => {
@@ -51,18 +49,10 @@ function Modeler(): ReactElement {
         data: { ...data, label },
       };
 
-      setNodes((nodes) => nodes.concat(newNode));
+      addNodes(newNode);
       setNodeId((prev) => prev + 1);
     },
     [nodeId],
-  );
-
-  const handleConnect = useCallback<Required<ReactFlowProps>['onConnect']>(
-    (params) => {
-      console.log('connect', params, edges);
-      setEdges((eds) => addEdge(params, eds));
-    },
-    [edges],
   );
 
   return (
@@ -77,14 +67,11 @@ function Modeler(): ReactElement {
       <SideBar edges={edges} nodes={nodes} onNodeAdd={handleNodeAdd} />
       <ReactFlow
         fitView
-        nodes={nodes}
-        edges={edges}
+        defaultNodes={initialNodes}
+        defaultEdges={initialEdges}
         nodeTypes={bpmnNodeTypes}
         defaultEdgeOptions={defaultEdgeOptions}
         connectionLineStyle={connectionLineStyle}
-        onNodesChange={handleNodesChange}
-        onEdgesChange={handleEdgesChange}
-        onConnect={handleConnect}
       >
         <Background />
         <Controls />
