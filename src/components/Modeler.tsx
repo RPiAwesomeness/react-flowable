@@ -2,13 +2,14 @@ import { ReactElement, useCallback, useState } from 'react';
 
 import ReactFlow, {
   Background,
+  Controls,
   DefaultEdgeOptions,
   MarkerType,
   MiniMap,
   ReactFlowProps,
   addEdge,
-  applyEdgeChanges,
-  applyNodeChanges,
+  useEdgesState,
+  useNodesState,
   useReactFlow,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
@@ -36,15 +37,16 @@ function Modeler(): ReactElement {
   const { screenToFlowPosition } = useReactFlow();
 
   const [nodeId, setNodeId] = useState(initialNodes.length);
-  const [nodes, setNodes] = useState(initialNodes);
-  const [edges, setEdges] = useState(initialEdges);
+  const [nodes, setNodes, handleNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, handleEdgesChange] = useEdgesState(initialEdges);
 
   const handleNodeAdd = useCallback<SideBarProps['onNodeAdd']>(
-    (type, label, data) => {
+    (type, label, data, width, height) => {
       const newNode: Node = {
         type,
         id: `node-${nodeId}`,
         position: screenToFlowPosition({ x: 0, y: 0 }),
+        style: { width, height },
         data: { ...data, label },
       };
 
@@ -53,16 +55,6 @@ function Modeler(): ReactElement {
     },
     [nodeId],
   );
-
-  const handleNodesChange = useCallback<
-    Required<ReactFlowProps>['onNodesChange']
-  >((changes) => setNodes((nds) => applyNodeChanges(changes, nds)), []);
-  const handleEdgesChange = useCallback<
-    Required<ReactFlowProps>['onEdgesChange']
-  >((changes) => {
-    console.log('edges', changes);
-    setEdges((eds) => applyEdgeChanges(changes, eds));
-  }, []);
 
   const handleConnect = useCallback<Required<ReactFlowProps>['onConnect']>(
     (params) => {
@@ -94,6 +86,7 @@ function Modeler(): ReactElement {
         onConnect={handleConnect}
       >
         <Background />
+        <Controls />
         <MiniMap />
       </ReactFlow>
     </div>

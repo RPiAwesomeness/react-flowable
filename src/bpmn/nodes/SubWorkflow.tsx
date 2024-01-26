@@ -1,19 +1,26 @@
 import { ReactElement } from 'react';
-import { Handle, NodeProps, Position } from 'reactflow';
+import { Handle, NodeProps, NodeResizer, Position } from 'reactflow';
+import Toolbar from './Toolbar';
 
 interface SubWorkflowData {
   label?: string;
 }
 
 function SubWorkflow({
+  id,
+  selected,
   data: { label = 'Unknown Sub-Workflow' },
 }: NodeProps<SubWorkflowData>): ReactElement {
   return (
-    <div className="basic-node sub-workflow">
+    <>
+      <Toolbar id={id} label={label} />
       <Handle type="target" position={Position.Left} />
-      <h2>{label} blep</h2>
+      <div className="sub-workflow">
+        <h5>{label}</h5>
+      </div>
       <Handle type="source" position={Position.Right} />
-    </div>
+      <NodeResizer isVisible={selected} minWidth={200} minHeight={100} />
+    </>
   );
 }
 

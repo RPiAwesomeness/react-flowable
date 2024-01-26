@@ -5,16 +5,15 @@ const BPMN_NS = 'http://www.omg.org/spec/BPMN/20100524/MODEL';
 const FLOWABLE_NS = 'http://flowable.org/bpmn';
 const FLOWABLE_TEMPLATE = `<definitions xmlns="${BPMN_NS}" xmlns:flowable="${FLOWABLE_NS}" targetNamespace="Examples" />`;
 
-const nodeConverters: Record<BPMNNodeTypes, ((node: Node, elem: Element) => void)> = {
-  startEvent: ({ data }, elem) => {
-    elem.setAttribute('label', data.label ?? 'start');
-  },
+const nodeConverters: Record<BPMNNodeTypes, ((node: Node, elem: Element) => void) | undefined> = {
+  startEvent: () => undefined,
+  endEvent: () => undefined,
   userTask: ({ data }, elem) => {
     elem.setAttribute('name', data.name ?? 'Unnamed Task');
   },
   subWorkflow: ({ data }, elem) => {
     elem.setAttribute('name', data.name ?? 'Unnamed Subworkflow');
-  }, 
+  },
 };
 
 function convertNodeToElement(doc: Document, node: Node): Element {
@@ -23,7 +22,7 @@ function convertNodeToElement(doc: Document, node: Node): Element {
   elem.setAttribute('id', id);
 
   // Do node-specific conversion, if it's defined
-  if (type && type in nodeConverters) nodeConverters[type as BPMNNodeTypes](node, elem);
+  if (type && type in nodeConverters) nodeConverters[type as BPMNNodeTypes]?.(node, elem);
 
   return elem;
 }

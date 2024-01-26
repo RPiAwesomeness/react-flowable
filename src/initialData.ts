@@ -27,24 +27,26 @@ const initialNodes: Node[] = [
   {
     id: 'node-2-a',
     data: {},
-    position: { x: 5, y: 5 },
+    position: { x: 0, y: 0 },
     type: 'startEvent',
     parentNode: 'node-2',
     extent: 'parent',
   },
   {
     id: 'node-2-b',
-    data: { label: '', name: 'Internal Test' },
-    position: { x: 100, y: 5},
+    data: { name: 'Internal Test', documentation: 'foo', fields: {
+      test: 'spam'
+    } },
+    position: { x: 100, y: 0},
     type: 'userTask',
     parentNode: 'node-2',
     extent: 'parent',
   },
   {
     id: 'node-3',
-    data: { label: 'end' },
+    data: {},
     position: { x: 250, y: 250 },
-    type: 'output',
+    type: 'endEvent',
   },
 ];
 

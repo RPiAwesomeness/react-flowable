@@ -42,6 +42,7 @@ const RAW_RUNTIME_STATE =
           ["prettier", "npm:3.2.4"],\
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:d02e96df8bd1851771919b56184612ffb40baf7826e4b0f4846dde624882ebab54ff2d69d924944c00f8944d6b6a6ccbd744498310e360e8a114e8575f3f5fd2#npm:18.2.0"],\
+          ["react-icons", "virtual:d02e96df8bd1851771919b56184612ffb40baf7826e4b0f4846dde624882ebab54ff2d69d924944c00f8944d6b6a6ccbd744498310e360e8a114e8575f3f5fd2#npm:5.0.1"],\
           ["react-scripts", "virtual:d02e96df8bd1851771919b56184612ffb40baf7826e4b0f4846dde624882ebab54ff2d69d924944c00f8944d6b6a6ccbd744498310e360e8a114e8575f3f5fd2#npm:5.0.1"],\
           ["reactflow", "virtual:d02e96df8bd1851771919b56184612ffb40baf7826e4b0f4846dde624882ebab54ff2d69d924944c00f8944d6b6a6ccbd744498310e360e8a114e8575f3f5fd2#npm:11.10.2"],\
           ["typescript", "patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"],\
@@ -15925,6 +15926,28 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["react-icons", [\
+      ["npm:5.0.1", {\
+        "packageLocation": "../.yarn/berry/cache/react-icons-npm-5.0.1-5e01385cf2-10c0.zip/node_modules/react-icons/",\
+        "packageDependencies": [\
+          ["react-icons", "npm:5.0.1"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:d02e96df8bd1851771919b56184612ffb40baf7826e4b0f4846dde624882ebab54ff2d69d924944c00f8944d6b6a6ccbd744498310e360e8a114e8575f3f5fd2#npm:5.0.1", {\
+        "packageLocation": "./.yarn/__virtual__/react-icons-virtual-9c1db809c2/2/.yarn/berry/cache/react-icons-npm-5.0.1-5e01385cf2-10c0.zip/node_modules/react-icons/",\
+        "packageDependencies": [\
+          ["react-icons", "virtual:d02e96df8bd1851771919b56184612ffb40baf7826e4b0f4846dde624882ebab54ff2d69d924944c00f8944d6b6a6ccbd744498310e360e8a114e8575f3f5fd2#npm:5.0.1"],\
+          ["@types/react", "npm:18.2.48"],\
+          ["react", "npm:18.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["react-is", [\
       ["npm:16.13.1", {\
         "packageLocation": "../.yarn/berry/cache/react-is-npm-16.13.1-a9b9382b4f-10c0.zip/node_modules/react-is/",\
@@ -17627,6 +17650,7 @@ const RAW_RUNTIME_STATE =
           ["prettier", "npm:3.2.4"],\
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:d02e96df8bd1851771919b56184612ffb40baf7826e4b0f4846dde624882ebab54ff2d69d924944c00f8944d6b6a6ccbd744498310e360e8a114e8575f3f5fd2#npm:18.2.0"],\
+          ["react-icons", "virtual:d02e96df8bd1851771919b56184612ffb40baf7826e4b0f4846dde624882ebab54ff2d69d924944c00f8944d6b6a6ccbd744498310e360e8a114e8575f3f5fd2#npm:5.0.1"],\
           ["react-scripts", "virtual:d02e96df8bd1851771919b56184612ffb40baf7826e4b0f4846dde624882ebab54ff2d69d924944c00f8944d6b6a6ccbd744498310e360e8a114e8575f3f5fd2#npm:5.0.1"],\
           ["reactflow", "virtual:d02e96df8bd1851771919b56184612ffb40baf7826e4b0f4846dde624882ebab54ff2d69d924944c00f8944d6b6a6ccbd744498310e360e8a114e8575f3f5fd2#npm:11.10.2"],\
           ["typescript", "patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"],\
