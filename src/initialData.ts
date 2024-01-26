@@ -51,7 +51,7 @@ const initialNodes: Node[] = [
   },
   {
     id: 'node-3',
-    data: {},
+    data: { title: 'end' },
     position: { x: 250, y: 250 },
     type: 'endEvent',
   },

@@ -1,19 +1,20 @@
 import { ReactElement } from 'react';
+
 import { NodeProps } from 'reactflow';
+
 import CustomNodeBase from './CustomNodeBase';
 
 interface EndEventData {
-  label: string;
+  title: string;
 }
 
-function EndEvent({ data }: NodeProps<EndEventData>): ReactElement {
+function EndEvent({ data: { title } }: NodeProps<EndEventData>): ReactElement {
   return (
     <CustomNodeBase
       handles={{ left: { type: 'target' } }}
       className="end-event"
-    >
-      {data.label ? <p>{data.label}</p> : null}
-    </CustomNodeBase>
+      title={title}
+    />
   );
 }
 
