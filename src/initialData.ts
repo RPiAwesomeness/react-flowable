@@ -63,6 +63,7 @@ const initialEdges: Edge[] = [
   { id: '1-2', source: 'node-1', target: 'ex-node' },
   // TODO: update markerStart on failed path w/ custom SVG
   { id: '2-3', source: 'ex-node', target: 'node-2' },
+  { id: '2-3', source: 'ex-node', sourceHandle: 'ex-node-source-bottom', target: 'node-3' },
   { id: '2a-2b', source: 'node-2-a', target: 'node-2-b' },
 ];
 

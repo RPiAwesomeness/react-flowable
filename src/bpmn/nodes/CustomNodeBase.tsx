@@ -2,7 +2,6 @@ import {
   HTMLAttributes,
   PropsWithChildren,
   ReactElement,
-  useId,
   useState,
 } from 'react';
 import {
@@ -29,8 +28,6 @@ function CustomNodeBase({
   className = '',
   ...rootProps
 }: CustomNodeBaseProps): ReactElement {
-  const id = useId();
-
   // We are inside a node - there will always be an ID
   const nodeId = useNodeId()!;
 
@@ -47,7 +44,8 @@ function CustomNodeBase({
       <div id={`${nodeId}-toolbar-portal`} />
       {Object.entries(handles).map(([pos, { type, title }]) => (
         <Handle
-          key={`${id}-handle-${pos}`}
+          id={`${nodeId}-${type}-${pos}`}
+          key={`${nodeId}-handle-${pos}`}
           position={pos as Position}
           type={type}
           title={title}

@@ -15,9 +15,9 @@ function ExclusiveGateway({
   return (
     <CustomNodeBase
       handles={{
-        left: { type: 'target', title: 'test-left' },
-        right: { type: 'source', title: 'test-right' },
-        bottom: { type: 'source', title: 'test-bottom' },
+        left: { type: 'target' },
+        right: { type: 'source', title: 'success' },
+        bottom: { type: 'source', title: 'failure' },
       }}
       className="exclusive-gateway"
       title={condition}
