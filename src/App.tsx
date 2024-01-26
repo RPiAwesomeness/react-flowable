@@ -1,11 +1,17 @@
-import Modeler from './components/Modeler';
-import './App.css';
 import { ReactElement } from 'react';
+
+import { ReactFlowProvider } from 'reactflow';
+
+import './App.css';
+import Modeler from './components/Modeler';
+
 
 function App(): ReactElement {
   return (
     <div className="App">
-      <Modeler />
+      <ReactFlowProvider>
+        <Modeler />
+      </ReactFlowProvider>
     </div>
   );
 }

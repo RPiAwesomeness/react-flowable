@@ -1,20 +1,26 @@
-.basicNode {
+.basic-node {
   min-height: 50px;
   min-width: 50px;
   padding: 5px;
-  border: 5px solid #eee;
-  border-radius: 5px;
-  background: 'white';
+  border: 3px solid #eee;
+  border-radius: 3px;
+  background: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.startEvent {
+.start-event {
   border-radius: 50px;
 }
 
-.userTask {
+.user-task {
   width: 200px;
+}
+
+.sub-workflow {
+  background: rgba(240, 248, 255, 0.648);
+  width: inherit;
+  height: inherit;
 }

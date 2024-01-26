@@ -10,20 +10,22 @@ function UserTask({
   data: { name = 'Unknown Task', documentation = '' },
 }: NodeProps<UserTaskData>): ReactElement {
   return (
-    <div className="userTask basicNode">
+    <>
       <Handle type="target" position={Position.Left} />
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <h2>{name}</h2>
-        <p>{documentation}</p>
+      <div className="basic-node user-task">
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <h2>{name}</h2>
+          <p>{documentation}</p>
+        </div>
       </div>
       <Handle type="source" position={Position.Right} />
-    </div>
+    </>
   );
 }
 

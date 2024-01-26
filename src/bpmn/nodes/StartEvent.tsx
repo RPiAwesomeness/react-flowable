@@ -1,18 +1,15 @@
-import { ReactElement, useEffect } from 'react';
+import { ReactElement } from 'react';
 import { Handle, NodeProps, Position } from 'reactflow';
 
-function StartEvent({ data }: NodeProps): ReactElement {
-  useEffect(() => {
-    console.log('data', data);
-  }, []);
+interface StartEventData {
+  label: string;
+}
+
+function StartEvent({ data }: NodeProps<StartEventData>): ReactElement {
   return (
-    <div className="basicNode startEvent">
+    <div className="basic-node start-event">
       <Handle type="source" position={Position.Right} />
-      <div>
-        {data.label && typeof data.label === 'string' ? (
-          <p>{data.label}</p>
-        ) : null}
-      </div>
+      <div>{data.label ? <p>{data.label}</p> : null}</div>
     </div>
   );
 }
