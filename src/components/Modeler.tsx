@@ -18,6 +18,7 @@ import { initialEdges, initialNodes } from 'initialData';
 import { Node, bpmnNodeTypes } from '../bpmn/nodes';
 import '../bpmn/nodes/nodeStyles.css';
 import SideBar, { SideBarProps } from './SideBar';
+import Toolbar from 'bpmn/nodes/Toolbar';
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
   zIndex: 500,
@@ -45,7 +46,7 @@ function Modeler(): ReactElement {
       const newNode: Node = {
         type,
         id: `node-${nodeId}`,
-        position: screenToFlowPosition({ x: 0, y: 0 }),
+        position: screenToFlowPosition({ x: 32, y: 32 }),
         style: { width, height },
         data: { ...data, label },
       };
@@ -88,6 +89,7 @@ function Modeler(): ReactElement {
         <Background />
         <Controls />
         <MiniMap />
+        <Toolbar />
       </ReactFlow>
     </div>
   );

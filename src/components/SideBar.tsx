@@ -1,9 +1,10 @@
 import { ReactElement, useCallback } from 'react';
 
 import { Edge } from 'reactflow';
-import { MdAddTask, MdOutlineAdd } from 'react-icons/md';
+import { MdAddTask } from 'react-icons/md';
 import { GoWorkflow } from 'react-icons/go';
 import { LuUpload } from 'react-icons/lu';
+import { IoEnterOutline, IoExitOutline } from 'react-icons/io5';
 
 import { exportBpmn } from '../bpmn';
 import type { Node, BPMNNodeTypes } from '../bpmn/nodes';
@@ -80,12 +81,17 @@ function SideBar({ edges, nodes, onNodeAdd }: SideBarProps): ReactElement {
       >
         <IconButton
           onClick={() => addNode('startEvent')}
-          title="Add Start Node"
-          icon={<MdOutlineAdd />}
+          title="Add Start Event"
+          icon={<IoEnterOutline />}
+        />
+        <IconButton
+          onClick={() => addNode('endEvent')}
+          title="Add End Event"
+          icon={<IoExitOutline />}
         />
         <IconButton
           onClick={() => addNode('userTask')}
-          title="Add User Task Node"
+          title="Add User Task"
           icon={<MdAddTask />}
         />
         <IconButton

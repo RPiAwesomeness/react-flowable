@@ -1,6 +1,5 @@
 import { ReactElement } from 'react';
 import { Handle, NodeProps, Position } from 'reactflow';
-import Toolbar from './Toolbar';
 
 interface UserTaskData {
   name?: string;
@@ -9,12 +8,10 @@ interface UserTaskData {
 }
 
 function UserTask({
-  id,
   data: { name = 'Unknown Task', documentation = '', fields },
 }: NodeProps<UserTaskData>): ReactElement {
   return (
     <>
-      <Toolbar id={id} label={name} />
       <Handle type="target" position={Position.Left} />
       <div className="basic-node user-task">
         <h5>{name}</h5>
@@ -22,7 +19,7 @@ function UserTask({
         {fields ? (
           <div className="task-fields">
             {Object.entries(fields).map(([key, value]) => (
-              <div>
+              <div key={key}>
                 <span>{key}:</span>
                 <span>{value}</span>
               </div>
