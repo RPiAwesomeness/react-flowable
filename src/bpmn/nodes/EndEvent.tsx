@@ -8,7 +8,10 @@ interface EndEventData {
 
 function EndEvent({ data }: NodeProps<EndEventData>): ReactElement {
   return (
-    <CustomNodeBase handles={{ left: 'target' }} className="end-event">
+    <CustomNodeBase
+      handles={{ left: { type: 'target' } }}
+      className="end-event"
+    >
       {data.label ? <p>{data.label}</p> : null}
     </CustomNodeBase>
   );

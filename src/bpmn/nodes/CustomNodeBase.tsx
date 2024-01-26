@@ -14,11 +14,12 @@ import {
   useOnSelectionChange,
 } from 'reactflow';
 
-interface CustomNodeBaseProps extends PropsWithChildren {
-  handles?: { [P in Position]?: HandleType };
+interface CustomNodeBaseProps
+  extends PropsWithChildren,
+    HTMLAttributes<HTMLDivElement> {
+  handles?: { [P in Position]?: { type: HandleType, title?: string } };
   className?: string;
   resizable?: boolean;
-  rootProps?: HTMLAttributes<HTMLDivElement>;
 }
 
 function CustomNodeBase({
@@ -26,7 +27,7 @@ function CustomNodeBase({
   resizable = false,
   handles = {},
   className = '',
-  rootProps = {},
+  ...rootProps
 }: CustomNodeBaseProps): ReactElement {
   const id = useId();
 
@@ -44,11 +45,12 @@ function CustomNodeBase({
   return (
     <div className="node-base" {...rootProps}>
       <div id={`${nodeId}-toolbar-portal`} />
-      {Object.entries(handles).map(([pos, type]) => (
+      {Object.entries(handles).map(([pos, { type, title }]) => (
         <Handle
           key={`${id}-handle-${pos}`}
           position={pos as Position}
           type={type}
+          title={title}
         />
       ))}
       <NodeResizer
@@ -57,9 +59,7 @@ function CustomNodeBase({
         minWidth={32}
         minHeight={32}
       />
-      <div className={['basic-node', className].join(' ')}>
-        {children}
-      </div>
+      <div className={['basic-node', className].join(' ')}>{children}</div>
     </div>
   );
 }

@@ -1,5 +1,6 @@
-import type { Node } from './bpmn/nodes';
 import type { Edge } from 'reactflow';
+
+import type { Node } from './bpmn/nodes';
 
 const initialNodes: Node[] = [
   {
@@ -43,6 +44,12 @@ const initialNodes: Node[] = [
     extent: 'parent',
   },
   {
+    id: 'ex-node',
+    data: { condition: "foo === 'bar'" },
+    position: { x: 250, y: 125 },
+    type: 'exclusiveGateway',
+  },
+  {
     id: 'node-3',
     data: {},
     position: { x: 250, y: 250 },
@@ -50,9 +57,12 @@ const initialNodes: Node[] = [
   },
 ];
 
+
 const initialEdges: Edge[] = [
   { id: '0-1', source: 'node-0', target: 'node-1' },
-  { id: '1-2', source: 'node-1', target: 'node-2' },
+  { id: '1-2', source: 'node-1', target: 'ex-node' },
+  // TODO: update markerStart on failed path w/ custom SVG
+  { id: '2-3', source: 'ex-node', target: 'node-2' },
   { id: '2a-2b', source: 'node-2-a', target: 'node-2-b' },
 ];
 

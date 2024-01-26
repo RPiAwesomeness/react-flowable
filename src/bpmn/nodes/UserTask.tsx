@@ -14,7 +14,7 @@ function UserTask({
   return (
     <CustomNodeBase
       resizable
-      handles={{ left: 'target', right: 'source' }}
+      handles={{ left: { type: 'target' }, right: { type: 'source' } }}
       className="user-task"
     >
       <h5>{name}</h5>

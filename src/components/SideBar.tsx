@@ -1,14 +1,36 @@
 import { ReactElement, useCallback } from 'react';
 
-import { Edge } from 'reactflow';
-import { MdAddTask } from 'react-icons/md';
+import { BsDiamond } from 'react-icons/bs';
 import { GoWorkflow } from 'react-icons/go';
-import { LuUpload } from 'react-icons/lu';
 import { IoEnterOutline, IoExitOutline } from 'react-icons/io5';
+import { LuUpload } from 'react-icons/lu';
+import { MdAddTask, MdClose } from 'react-icons/md';
+import { Edge } from 'reactflow';
 
 import { exportBpmn } from '../bpmn';
-import type { Node, BPMNNodeTypes } from '../bpmn/nodes';
+import type { BPMNNodeTypes, Node } from '../bpmn/nodes';
 import IconButton from './IconButton';
+import styled from 'styled-components';
+
+const StackedIcon = styled.div`
+  display: grid;
+  width: 100%;
+  height: 100%;
+  svg {
+    grid-area: 1 / 1;
+  }
+  svg:first-of-type {
+    padding: 15%;
+    width: 70%;
+  }
+`;
+
+export const ExclusiveGatewayIcon = () => (
+  <StackedIcon>
+    <MdClose />
+    <BsDiamond />
+  </StackedIcon>
+);
 
 export interface SideBarProps {
   edges: Edge[];
@@ -84,6 +106,11 @@ function SideBar({ edges, nodes, onNodeAdd }: SideBarProps): ReactElement {
           onClick={() => addNode('endEvent')}
           title="Add End Event"
           icon={<IoExitOutline />}
+        />
+        <IconButton
+          onClick={() => addNode('exclusiveGateway')}
+          title="Add Exclusive Gateway"
+          icon={<ExclusiveGatewayIcon />}
         />
         <IconButton
           onClick={() => addNode('userTask')}

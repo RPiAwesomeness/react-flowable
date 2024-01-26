@@ -8,8 +8,8 @@ h5, h6 {
   min-width: 32px;
   width: calc(100% - 6px);
   height: calc(100% - 6px);
-  border: 3px solid #eee;
-  border-radius: 3px;
+  border: 2px solid;
+  border-radius: 2px;
   background: white;
   display: flex;
   flex-direction: column;
@@ -48,7 +48,14 @@ h5, h6 {
 }
 
 .sub-workflow {
-  display: flex;
   border: 2px solid #555;
   border-radius: 5px;
+}
+
+.exclusive-gateway {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateZ(45deg) scale(60%);
+  border-width: 3px;
 }

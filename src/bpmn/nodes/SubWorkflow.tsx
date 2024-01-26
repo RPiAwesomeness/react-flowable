@@ -12,7 +12,7 @@ function SubWorkflow({
   return (
     <CustomNodeBase
       resizable
-      handles={{ left: 'target', right: 'source' }}
+      handles={{ left: { type: 'target' }, right: { type: 'source' } }}
       className="sub-workflow"
     >
       <h5>{label}</h5>

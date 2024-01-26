@@ -18,7 +18,7 @@ function IconButton({
   size,
 }: IconButtonProps): ReactElement {
   return (
-  <button
+    <button
       className="icon-button nodrag"
       style={{
         width: width ?? size ?? '100%',

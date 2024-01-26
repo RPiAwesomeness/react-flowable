@@ -8,7 +8,10 @@ interface StartEventData {
 
 function StartEvent({ data }: NodeProps<StartEventData>): ReactElement {
   return (
-    <CustomNodeBase handles={{ right: 'source' }} className="start-event">
+    <CustomNodeBase
+      handles={{ right: { type: 'source' } }}
+      className="start-event"
+    >
       {data.label ? <p>{data.label}</p> : null}
     </CustomNodeBase>
   );

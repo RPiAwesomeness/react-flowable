@@ -4,8 +4,10 @@ import StartEvent from "./StartEvent";
 import UserTask from './UserTask';
 import SubWorkflow from "./SubWorkflow";
 import EndEvent from "./EndEvent";
+import ExclusiveGateway from "./ExclusiveGateway";
 
 const bpmnNodeTypes = {
+  exclusiveGateway: ExclusiveGateway,
   startEvent: StartEvent,
   userTask: UserTask,
   subWorkflow: SubWorkflow,
