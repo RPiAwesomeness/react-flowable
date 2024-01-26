@@ -59,7 +59,7 @@ function Toolbar(): ReactElement | null {
           style={{
             position: 'absolute',
             left: -16,
-            bottom: 32,
+            top: -56,
             marginBottom: 4,
             justifyContent: 'center',
             alignItems: 'center',

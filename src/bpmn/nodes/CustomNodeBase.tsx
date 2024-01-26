@@ -42,16 +42,7 @@ function CustomNodeBase({
   });
 
   return (
-    <div
-      style={{
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: '100%',
-        ...rootProps,
-      }}
-    >
+    <div className="node-base" {...rootProps}>
       <div id={`${nodeId}-toolbar-portal`} />
       {Object.entries(handles).map(([pos, type]) => (
         <Handle
@@ -66,7 +57,9 @@ function CustomNodeBase({
         minWidth={32}
         minHeight={32}
       />
-      <div className={['basic-node', className].join(' ')} style={{  }}>{children}</div>
+      <div className={['basic-node', className].join(' ')}>
+        {children}
+      </div>
     </div>
   );
 }

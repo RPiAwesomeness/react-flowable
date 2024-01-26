@@ -2,6 +2,7 @@ import { ReactElement, useCallback, useState } from 'react';
 
 import ReactFlow, {
   Background,
+  ConnectionLineType,
   Controls,
   DefaultEdgeOptions,
   MarkerType,
@@ -20,6 +21,7 @@ import Toolbar from 'bpmn/nodes/Toolbar';
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
   zIndex: 500,
+  type: ConnectionLineType.SmoothStep,
   style: { strokeWidth: 2, stroke: 'black' },
   markerEnd: {
     type: MarkerType.ArrowClosed,
@@ -73,6 +75,7 @@ function Modeler(): ReactElement {
         nodeTypes={bpmnNodeTypes}
         defaultEdgeOptions={defaultEdgeOptions}
         connectionLineStyle={connectionLineStyle}
+        connectionLineType={ConnectionLineType.SmoothStep}
       >
         <Background />
         <Controls />
